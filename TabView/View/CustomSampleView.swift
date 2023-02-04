@@ -12,8 +12,11 @@ struct CustomSampleView: View {
                 CustomPage2().tag(1)
                 CustomPage3().tag(2)
             }
+            // スワイプアクションを無効化
             .disabled(true)
+            // ページスタイル（インジケータ非表示）
             .tabViewStyle(.page(indexDisplayMode: .never))
+            // 切り替え時のアニメーション
             .animation(.easeInOut, value: selected)
         }
         .ignoresSafeArea(edges: .bottom)
