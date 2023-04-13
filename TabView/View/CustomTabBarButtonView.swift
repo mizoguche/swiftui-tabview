@@ -11,11 +11,13 @@ struct CustomTabBarButtonView: View {
         } label: {
             VStack(spacing: 0) {
                 Text(title)
+                    .foregroundColor(.black)
                     .padding(8)
                 Rectangle()
-                    .frame(height: 8)
-                    .hidden(isHidden: selected != tag)
+                    .foregroundColor(.clear)
+                    .frame(height: 4)
             }
+            
         }
     }
 }
