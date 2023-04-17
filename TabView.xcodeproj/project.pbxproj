@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A939960029ED3CD500046764 /* SlideTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93995FF29ED3CD500046764 /* SlideTabView.swift */; };
 		A9514FB9298E844600937E9C /* TabViewApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9514FB8298E844600937E9C /* TabViewApp.swift */; };
 		A9514FBB298E844600937E9C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9514FBA298E844600937E9C /* ContentView.swift */; };
 		A9514FBD298E844700937E9C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A9514FBC298E844700937E9C /* Assets.xcassets */; };
@@ -16,9 +17,8 @@
 		A9514FD6298E844700937E9C /* TabViewUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9514FD5298E844700937E9C /* TabViewUITestsLaunchTests.swift */; };
 		A996507B298E84DE002D9AB6 /* BasicSampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A996507A298E84DE002D9AB6 /* BasicSampleView.swift */; };
 		A996507D298E85F2002D9AB6 /* CustomSampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A996507C298E85F2002D9AB6 /* CustomSampleView.swift */; };
-		A996507F298E89BF002D9AB6 /* CustomTabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A996507E298E89BF002D9AB6 /* CustomTabBarView.swift */; };
+		A996507F298E89BF002D9AB6 /* SlideTabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A996507E298E89BF002D9AB6 /* SlideTabBarView.swift */; };
 		A9965082298E8BA1002D9AB6 /* HiddenViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9965081298E8BA1002D9AB6 /* HiddenViewModifier.swift */; };
-		A9965084298E8C9C002D9AB6 /* CustomTabBarButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9965083298E8C9C002D9AB6 /* CustomTabBarButtonView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,6 +39,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A93995FF29ED3CD500046764 /* SlideTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideTabView.swift; sourceTree = "<group>"; };
 		A9514FB5298E844600937E9C /* TabView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TabView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9514FB8298E844600937E9C /* TabViewApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewApp.swift; sourceTree = "<group>"; };
 		A9514FBA298E844600937E9C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -51,9 +52,8 @@
 		A9514FD5298E844700937E9C /* TabViewUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		A996507A298E84DE002D9AB6 /* BasicSampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicSampleView.swift; sourceTree = "<group>"; };
 		A996507C298E85F2002D9AB6 /* CustomSampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSampleView.swift; sourceTree = "<group>"; };
-		A996507E298E89BF002D9AB6 /* CustomTabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarView.swift; sourceTree = "<group>"; };
+		A996507E298E89BF002D9AB6 /* SlideTabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideTabBarView.swift; sourceTree = "<group>"; };
 		A9965081298E8BA1002D9AB6 /* HiddenViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HiddenViewModifier.swift; sourceTree = "<group>"; };
-		A9965083298E8C9C002D9AB6 /* CustomTabBarButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarButtonView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,8 +144,8 @@
 			children = (
 				A996507A298E84DE002D9AB6 /* BasicSampleView.swift */,
 				A996507C298E85F2002D9AB6 /* CustomSampleView.swift */,
-				A996507E298E89BF002D9AB6 /* CustomTabBarView.swift */,
-				A9965083298E8C9C002D9AB6 /* CustomTabBarButtonView.swift */,
+				A996507E298E89BF002D9AB6 /* SlideTabBarView.swift */,
+				A93995FF29ED3CD500046764 /* SlideTabView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -289,8 +289,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				A996507B298E84DE002D9AB6 /* BasicSampleView.swift in Sources */,
-				A996507F298E89BF002D9AB6 /* CustomTabBarView.swift in Sources */,
-				A9965084298E8C9C002D9AB6 /* CustomTabBarButtonView.swift in Sources */,
+				A939960029ED3CD500046764 /* SlideTabView.swift in Sources */,
+				A996507F298E89BF002D9AB6 /* SlideTabBarView.swift in Sources */,
 				A996507D298E85F2002D9AB6 /* CustomSampleView.swift in Sources */,
 				A9965082298E8BA1002D9AB6 /* HiddenViewModifier.swift in Sources */,
 				A9514FBB298E844600937E9C /* ContentView.swift in Sources */,
