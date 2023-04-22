@@ -1,8 +1,12 @@
 import SwiftUI
 
+/// タブコンテンツのデータモデル
 struct SlideTabContent<Content: View>: Identifiable {
+    /// タブID (ForEachで必要)
     var id: Int
+    /// タブタイトル
     var title: String
+    /// タブコンテンツ (任意のView)
     var content: Content
 }
 
