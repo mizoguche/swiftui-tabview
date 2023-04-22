@@ -1,51 +1,30 @@
 import SwiftUI
 
+
+
 struct CustomSampleView: View {
-    @State var selected = 0
+    @State var tabContents = [
+        SlideTabContent(id: 0, title: "Page1", content: PageView(color: .red)),
+        SlideTabContent(id: 1, title: "Page2", content: PageView(color: .green)),
+        SlideTabContent(id: 2, title: "Page3", content: PageView(color: .blue))
+    ]
         
     var body: some View {
-        VStack(spacing: 0) {
-            CustomTabBarView(selected: $selected)
-            
-            TabView(selection: $selected) {
-                CustomPage1().tag(0)
-                CustomPage2().tag(1)
-                CustomPage3().tag(2)
-            }
-            // スワイプアクションを無効化
-            .disabled(true)
-            // ページスタイル（インジケータ非表示）
-            .tabViewStyle(.page(indexDisplayMode: .never))
-            // 切り替え時のアニメーション
-            .animation(.easeInOut, value: selected)
-        }
-        .ignoresSafeArea(edges: .bottom)
+        SlideTabView(tabContents: tabContents)
+            .ignoresSafeArea(edges: .bottom)
+    }
+}
+
+struct PageView: View {
+    let color: Color
+    
+    var body: some View {
+        color.ignoresSafeArea()
     }
 }
 
 struct CustomSampleView_Previews: PreviewProvider {
     static var previews: some View {
         CustomSampleView()
-    }
-}
-
-struct CustomPage1: View {
-    var body: some View {
-        Color.red
-            .ignoresSafeArea()
-    }
-}
-
-struct CustomPage2: View {
-    var body: some View {
-        Color.green
-            .ignoresSafeArea()
-    }
-}
-
-struct CustomPage3: View {
-    var body: some View {
-        Color.blue
-            .ignoresSafeArea()
     }
 }
