@@ -14,6 +14,7 @@ struct SlideTabView<Content: View>: View {
     var body: some View {
         GeometryReader { geometry in
             let screenWidth = geometry.size.width
+            let safeAreaInsetsLeading = geometry.safeAreaInsets.leading
             
             VStack(spacing: 0) {
                 SlideTabBarView(tabBars: tabContents.map{( $0.id, $0.title )},
@@ -34,7 +35,7 @@ struct SlideTabView<Content: View>: View {
                                             guard selection == tabViewType.id else { return }
                                             
                                             // 対象タブのスワイプ量をTabBarの比率に変換して、インジケーターのoffsetを計算する
-                                            let offset = -(value.minX - (screenWidth * CGFloat(selection))) / tabCount
+                                            let offset = -(value.minX - safeAreaInsetsLeading - (screenWidth * CGFloat(selection))) / tabCount
                                             
                                             if selection == tabContents.first?.id {
                                                 // 最初のタブの場合、offsetが0以上の時のみ位置を更新する

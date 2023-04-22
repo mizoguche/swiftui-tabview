@@ -8,7 +8,7 @@ struct SlideTabBarView: View {
     
     var body: some View {
         GeometryReader { geometry in
-            HStack {
+            HStack(spacing: 0) {
                 ForEach(tabBars, id: \.id) { tabBar in
                     Button {
                         selection = tabBar.id
