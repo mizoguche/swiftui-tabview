@@ -28,15 +28,15 @@ struct SlideTabView<Content: View>: View {
                 .frame(height: 48)
                 
                 TabView(selection: $selection) {
-                    ForEach(tabContents) { tabViewType in
-                        tabViewType.content
-                            .tag(tabViewType.id)
+                    ForEach(tabContents) { tabContent in
+                        tabContent.content
+                            .tag(tabContent.id)
                             .overlay {
                                 GeometryReader{ proxy in
                                     Color.clear
                                         .onChange(of: proxy.frame(in: .global), perform: { value in
                                             // 表示中のタブをスワイプした時のみ処理する
-                                            guard selection == tabViewType.id else { return }
+                                            guard selection == tabContent.id else { return }
                                             
                                             // 対象タブのスワイプ量をTabBarの比率に変換して、インジケーターのoffsetを計算する
                                             let offset = -(value.minX - safeAreaInsetsLeading - (screenWidth * CGFloat(selection))) / tabCount
