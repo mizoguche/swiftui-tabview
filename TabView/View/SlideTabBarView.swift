@@ -3,7 +3,7 @@ import SwiftUI
 struct SlideTabBarView: View {
     let tabBars: [(id: Int, title: String)]
     let color: Color
-    @Binding var selected: Int
+    @Binding var selection: Int
     @Binding var indicatorPosition: CGFloat
     
     var body: some View {
@@ -11,7 +11,7 @@ struct SlideTabBarView: View {
             HStack {
                 ForEach(tabBars, id: \.id) { tabBar in
                     Button {
-                        selected = tabBar.id
+                        selection = tabBar.id
                     } label: {
                         Text(tabBar.title)
                             .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -40,7 +40,7 @@ struct SlideTabBarView_Previews: PreviewProvider {
                                   (id: 1, title: "Page2"),
                                   (id: 2, title: "Page3")],
                         color: .black,
-                        selected: .constant(0),
+                        selection: .constant(0),
                         indicatorPosition: .constant(0))
     }
 }

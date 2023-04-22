@@ -8,7 +8,7 @@ struct SlideTabContent<Content: View>: Identifiable {
 
 struct SlideTabView<Content: View>: View {
     @State var tabContents: [SlideTabContent<Content>]
-    @State var selected: Int = 0
+    @State var selection: Int = 0
     @State private var indicatorPosition: CGFloat = 0
     
     var body: some View {
@@ -18,11 +18,11 @@ struct SlideTabView<Content: View>: View {
             VStack(spacing: 0) {
                 SlideTabBarView(tabBars: tabContents.map{( $0.id, $0.title )},
                                 color: .black,
-                                selected: $selected,
+                                selection: $selection,
                                 indicatorPosition: $indicatorPosition)
                 .frame(height: 48)
                 
-                TabView(selection: $selected) {
+                TabView(selection: $selection) {
                     ForEach(tabContents) { tabViewType in
                         tabViewType.content
                             .tag(tabViewType.id)
@@ -31,12 +31,12 @@ struct SlideTabView<Content: View>: View {
                                     Color.clear
                                         .onChange(of: proxy.frame(in: .global), perform: { value in
                                             // 表示中のタブをスワイプした時のみ処理する
-                                            guard selected == tabViewType.id else { return }
+                                            guard selection == tabViewType.id else { return }
                                             
                                             // 対象タブのスワイプ量をTabBarの比率に変換して、インジケーターのoffsetを計算する
-                                            let offset = -(value.minX - (screenWidth * CGFloat(selected))) / tabCount
+                                            let offset = -(value.minX - (screenWidth * CGFloat(selection))) / tabCount
                                             
-                                            if selected == tabContents.first?.id {
+                                            if selection == tabContents.first?.id {
                                                 // 最初のタブの場合、offsetが0以上の時のみ位置を更新する
                                                 if offset >= 0 {
                                                     indicatorPosition = offset
@@ -45,7 +45,7 @@ struct SlideTabView<Content: View>: View {
                                                 }
                                             }
                                             
-                                            if selected == tabContents.last?.id {
+                                            if selection == tabContents.last?.id {
                                                 // 最後のタブの場合、offsetがscreenWidth以下の時のみ位置を更新する
                                                 if offset + screenWidth/tabCount <= screenWidth {
                                                     indicatorPosition = offset
@@ -61,7 +61,7 @@ struct SlideTabView<Content: View>: View {
                     }
                 }
                 .tabViewStyle(.page(indexDisplayMode: .never))
-                .animation(.easeInOut, value: selected)
+                .animation(.easeInOut, value: selection)
             }
         }
     }
