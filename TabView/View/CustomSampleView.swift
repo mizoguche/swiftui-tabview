@@ -4,9 +4,9 @@ import SwiftUI
 
 struct CustomSampleView: View {
     @State var tabViewTypes = [
-        SlideTabContent(id: 0, title: "Page1", view: AnyView(PageView(color: .red))),
-        SlideTabContent(id: 1, title: "Page2", view: AnyView(PageView(color: .green))),
-        SlideTabContent(id: 2, title: "Page3", view: AnyView(PageView(color: .blue)))
+        SlideTabContent(id: 0, title: "Page1", content: PageView(color: .red)),
+        SlideTabContent(id: 1, title: "Page2", content: PageView(color: .green)),
+        SlideTabContent(id: 2, title: "Page3", content: PageView(color: .blue))
     ]
         
     var body: some View {

@@ -1,13 +1,13 @@
 import SwiftUI
 
-struct SlideTabContent: Identifiable {
+struct SlideTabContent<Content: View>: Identifiable {
     var id: Int
     var title: String
-    var view: AnyView
+    var content: Content
 }
 
-struct SlideTabView: View {
-    @State var tabContents: [SlideTabContent]
+struct SlideTabView<Content: View>: View {
+    @State var tabContents: [SlideTabContent<Content>]
     @State var selected: Int = 0
     @State private var indicatorPosition: CGFloat = 0
     
@@ -24,7 +24,7 @@ struct SlideTabView: View {
                 
                 TabView(selection: $selected) {
                     ForEach(tabContents) { tabViewType in
-                        tabViewType.view
+                        tabViewType.content
                             .tag(tabViewType.id)
                             .overlay {
                                 GeometryReader{ proxy in
@@ -73,8 +73,8 @@ struct SlideTabView: View {
 
 struct SlideTabView_Previews: PreviewProvider {
     static var previews: some View {
-        SlideTabView(tabContents: [SlideTabContent(id: 0, title: "Page1", view: AnyView(PageView(color: .red))),
-                                   SlideTabContent(id: 1, title: "Page2", view: AnyView(PageView(color: .green))),
-                                   SlideTabContent(id: 2, title: "Page3", view: AnyView(PageView(color: .blue)))])
+        SlideTabView(tabContents: [SlideTabContent(id: 0, title: "Page1", content: PageView(color: .red)),
+                                   SlideTabContent(id: 1, title: "Page2", content: PageView(color: .green)),
+                                   SlideTabContent(id: 2, title: "Page3", content: PageView(color: .blue))])
     }
 }
