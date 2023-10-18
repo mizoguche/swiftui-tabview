@@ -3,8 +3,7 @@ import SwiftUI
 struct SlideTabBarView: View {
     let tabBars: [(id: Int, title: String)]
     let color: Color
-//    @Binding var selection: Int
-//    @Binding var indicatorPosition: CGFloat
+    
     @EnvironmentObject var viewModel: SlideTabBarViewModel
     
     var body: some View {
@@ -13,6 +12,7 @@ struct SlideTabBarView: View {
                 ForEach(tabBars, id: \.id) { tabBar in
                     Button {
                         viewModel.selection = tabBar.id
+                        viewModel.indicatorPosition = tabBarWidth(width: geometry.size.width) * CGFloat(tabBar.id)
                     } label: {
                         Text(tabBar.title)
                             .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -24,7 +24,7 @@ struct SlideTabBarView: View {
             .overlay(alignment: .bottomLeading) {
                 Rectangle()
                     .foregroundColor(color)
-                    .frame(width: geometry.size.width / tabBarCount, height: 4)
+                    .frame(width: tabBarWidth(width: geometry.size.width), height: 4)
                     .offset(x: viewModel.indicatorPosition, y: 0)
             }
         }
@@ -32,6 +32,14 @@ struct SlideTabBarView: View {
     
     private var tabBarCount: CGFloat {
         CGFloat(tabBars.count)
+    }
+    
+    private func tabBarWidth(width: CGFloat) -> CGFloat {
+        width / CGFloat(tabBars.count)
+    }
+
+    private func tabBarIndicatorWidth(width: CGFloat) -> CGFloat {
+        width / CGFloat(tabBars.count)
     }
 }
 

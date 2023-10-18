@@ -4,16 +4,23 @@ import SwiftUI
 
 struct CustomSampleView: View {
     @State private var tabViewHeight: CGFloat = 0
-    @ObservedObject private var viewModel = SlideTabBarViewModel()
-        
+    @State private var tabViewHeights: [Int: CGFloat] = [:]
+    @StateObject private var viewModel = SlideTabBarViewModel()
+    
     var body: some View {
         VStack(spacing: 0) {
             sectionHeader
             
             SlideTabView(tabContents: [
-                SlideTabContent(id: 0, title: "Page1", content: PageView(color: .red, count: 5, height: $tabViewHeight)),
-                SlideTabContent(id: 1, title: "Page2", content: PageView(color: .green, count: 3, height: $tabViewHeight)),
-                SlideTabContent(id: 2, title: "Page3", content: PageView(color: .blue, count: 10, height: $tabViewHeight))
+                SlideTabContent(id: 0, title: "Page1", content: PageView(id: 0, color: .red, count: 5, onHeightChanged: { id, height in
+                    tabViewHeights[id] = height
+                })),
+                SlideTabContent(id: 1, title: "Page2", content: PageView(id: 1, color: .green, count: 3, onHeightChanged: { id, height in
+                    tabViewHeights[id] = height
+                })),
+                SlideTabContent(id: 2, title: "Page3", content: PageView(id: 2, color: .blue, count: 10, onHeightChanged: { id, height in
+                    tabViewHeights[id] = height
+                }))
             ])
             .ignoresSafeArea(edges: .bottom)
         }
@@ -31,9 +38,10 @@ struct CustomSampleView: View {
 }
 
 struct PageView: View {
+    let id: Int
     let color: Color
     let count: Int
-    @Binding var height: CGFloat
+    let onHeightChanged: (Int, CGFloat) -> Void
     
     var body: some View {
         LazyVStack() {
@@ -47,7 +55,7 @@ struct PageView: View {
             GeometryReader { proxy in
                 Color.clear
                     .onAppear {
-                        height = proxy.size.height
+                        onHeightChanged(id, proxy.size.height)
                     }
             }
         )

@@ -58,7 +58,6 @@ struct SlideTabView<Content: View>: View {
                 }
             }
             .tabViewStyle(.page(indexDisplayMode: .never))
-            .animation(.easeInOut, value: viewModel.selection)
         }
     }
     
