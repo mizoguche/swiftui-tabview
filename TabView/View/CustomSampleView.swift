@@ -12,15 +12,9 @@ struct CustomSampleView: View {
             sectionHeader
             
             SlideTabView(tabContents: [
-                SlideTabContent(id: 0, title: "Page1", content: PageView(id: 0, color: .red, count: 5, onHeightChanged: { id, height in
-                    tabViewHeights[id] = height
-                })),
-                SlideTabContent(id: 1, title: "Page2", content: PageView(id: 1, color: .green, count: 3, onHeightChanged: { id, height in
-                    tabViewHeights[id] = height
-                })),
-                SlideTabContent(id: 2, title: "Page3", content: PageView(id: 2, color: .blue, count: 10, onHeightChanged: { id, height in
-                    tabViewHeights[id] = height
-                }))
+                SlideTabContent(id: 0, title: "Page1", content: PageView(color: .red)),
+                SlideTabContent(id: 1, title: "Page2", content: PageView(color: .green)),
+                SlideTabContent(id: 2, title: "Page3", content: PageView(color: .blue))
             ])
             .ignoresSafeArea(edges: .bottom)
         }
@@ -38,27 +32,10 @@ struct CustomSampleView: View {
 }
 
 struct PageView: View {
-    let id: Int
     let color: Color
-    let count: Int
-    let onHeightChanged: (Int, CGFloat) -> Void
     
     var body: some View {
-        LazyVStack() {
-            ForEach(0..<count, id: \.self) { _ in
-                color
-                    .frame(maxWidth: .infinity)
-                    .frame(height: 200)
-            }
-        }
-        .background(
-            GeometryReader { proxy in
-                Color.clear
-                    .onAppear {
-                        onHeightChanged(id, proxy.size.height)
-                    }
-            }
-        )
+        color.ignoresSafeArea()
     }
 }
 
