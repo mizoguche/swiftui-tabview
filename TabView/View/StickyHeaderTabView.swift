@@ -38,6 +38,9 @@ struct StickyHeaderTabView: View {
                             }))
                         ])
                         .frame(height: tabViewHeights[viewModel.selection] ?? UIScreen.main.bounds.height)
+                        .onChange(of: viewModel.selection) { newValue in
+                            print("new selection: \(newValue), size.height: \(proxy.size.height), tabViewHeights[viewModel.selection]: \(tabViewHeights[viewModel.selection])")
+                        }
                     }
                     
                     

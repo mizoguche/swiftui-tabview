@@ -27,9 +27,11 @@ struct ListView: View {
             GeometryReader { proxy in
                 Color.clear
                     .onAppear {
+                        print("list ivew\(viewModel.id) onAppler height:\(proxy.size.height)")
                         onHeightChanged(viewModel.id, proxy.size.height)
                     }
                     .onChange(of: proxy.size, perform: { size in
+                        print("list ivew\(viewModel.id) onChange height:\(proxy.size.height)")
                         onHeightChanged(viewModel.id, size.height)
                     })
             }
@@ -57,7 +59,7 @@ final class ListViewModel: ObservableObject {
     }
     
     func onPageEnd() async {
-        try? await Task.sleep(nanoseconds: 3_000_000_000)
+        try? await Task.sleep(nanoseconds: 1_000_000_000)
         
         for _ in 0..<pageSize {
             items.append(UUID().uuidString)
